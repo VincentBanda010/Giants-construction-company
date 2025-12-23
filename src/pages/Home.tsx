@@ -229,7 +229,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               {/* Title - 4 breakpoints */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4">
                 Consultancy Pioneers
               </h2>
               <div className="w-14 h-3 bg-primary mb-6" />
@@ -277,17 +277,19 @@ const Home = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
                 Forefront in Architecture Engineering
               </h2>
-              <div className="w-12 h-1 bg-primary mb-6" />
+              <div className="w-14 h-3 bg-primary mb-6" />
               {/* Description - 3 breakpoints */}
               <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
                 Our architectural team brings creativity and precision together to transform 
                 ideas into structurally sound and visually compelling spaces.
               </p>
-              <Link to="/services">
-                <Button className="bg-primary hover:bg-primary/90 text-white gap-2 text-base sm:text-lg">
+              <Link to="/services" className="flex items-center gap-4 no-underline group">
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
                   LEARN MORE
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                </span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
               </Link>
             </div>
           </div>
