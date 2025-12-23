@@ -84,21 +84,27 @@ const Home = () => {
         
         <div className="absolute inset-0 bg-black/50" />
         
-        <div className="container mx-auto px-4 relative z-10">
+        {/* Matches header EXACTLY */}
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className={`max-w-2xl text-white transition-opacity duration-500 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}>
-            <h1 className="text-6xl md:text-7xl font-normal mb-4 leading-tight whitespace-pre-line">
+            {/* Hero Title - 4 breakpoints */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal mb-4 leading-tight whitespace-pre-line">
               {heroSlides[currentIndex].title}
             </h1>
-            <p className="text-xl mb-16 opacity-0 animate-fadeIn">
+            
+            {/* Hero Subtitle - 3 breakpoints */}
+            <p className="text-lg sm:text-xl md:text-2xl mb-16 opacity-0 animate-fadeIn">
               {heroSlides[currentIndex].subtitle}
             </p>
+            
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors cursor-pointer">
-                <ArrowRight className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors cursor-pointer">
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <span className="text-white text-lg font-normal tracking-wide">
+              {/* CTA Text - 3 breakpoints */}
+              <span className="text-base sm:text-lg md:text-xl font-normal tracking-wide text-white">
                 Request a Quote Today
               </span>
             </div>
@@ -135,22 +141,26 @@ const Home = () => {
 
       {/* Experience Section */}
       <section className="py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <div> {/* Removed max-w-3xl constraint completely */}
-            <p className="text-secondary text-sm font-semibold tracking-wider mb-2 text-left">
+        {/* Matches header EXACTLY */}
+        <div className="container mx-auto px-4 lg:px-8">
+          <div>
+            {/* Years of Experience - 3 breakpoints */}
+            <p className="text-secondary text-base sm:text-lg md:text-xl font-semibold tracking-wider mb-2 text-left">
               Years of Experience in
             </p>
             
-            <h2 className="text-4xl md:text-5xl font-light mb-4 leading-tight text-left">
+            {/* Main Heading - 4 breakpoints */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 leading-tight text-left">
               Construction, Consultancy and<br />
               Architecture
             </h2>
             
             {/* Thin black long line extending full width */}
-            <div className="w-full h-px bg-black mb-8"></div> {/* Full width line */}
+            <div className="w-full h-px bg-black mb-8"></div>
             
-            <div className="mb-12 max-w-2xl ml-auto"> {/* Only paragraph has max-width and right alignment */}
-              <p className="text-gray-600 text-lg font-light leading-relaxed text-right">
+            <div className="mb-12 max-w-2xl ml-auto">
+              {/* Description - 3 breakpoints */}
+              <p className="text-gray-600 text-base sm:text-lg md:text-xl font-light leading-relaxed text-right">
                 Your trusted partner in construction and consultancy solutions since in<br />
                 2017. Committed to delivering high quality construction projects and<br />
                 professional consulting<br />
@@ -159,11 +169,12 @@ const Home = () => {
             </div>
             
             <div className="flex items-center gap-4 justify-end">
-              <span className="text-primary text-lg font-normal tracking-wide">
+              {/* CTA Text - 3 breakpoints */}
+              <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
                 GET TO KNOW US
               </span>
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                <ArrowRight className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
             </div>
           </div>
@@ -176,52 +187,66 @@ const Home = () => {
         style={{ backgroundImage: `url(${constructorImage})` }}
       >
         <div className="absolute inset-0 bg-black/60" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl">
-            <div className="w-12 h-1 bg-primary mb-6" />
-            <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight text-white">
+        {/* Matches header EXACTLY */}
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div> {/* REMOVED max-w-2xl from this div */}
+            <div className="w-14 h-2.5 bg-primary mb-6" />
+            {/* Title - 4 breakpoints */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-8 leading-tight text-white">
               We are Best<br />
               Constructors in<br />
               Malawi
             </h2>
             
-            {/* Blue rectangle with text */}
-            <div className="bg-secondary p-8 rounded-lg mb-8">
-              <p className="text-lg leading-relaxed font-light text-white">
+            {/* Blue rectangle WITH VERTICAL GAP */}
+            <div className="bg-secondary p-6 sm:p-8 rounded-lg mb-8 mt-12">
+              <p className="text-base sm:text-lg md:text-xl leading-relaxed font-light text-white mb-8">
                 We deliver end-to-end construction solutions built on quality, precision, and reliability. 
                 From large-scale industrial projects to commercial and residential developments, our team 
                 ensures every structure meets the highest standards of safety, durability, and craftsmanship
               </p>
+              
+              {/* Button matching "GET TO KNOW US" style */}
+              <div className="flex items-center gap-4 justify-end">
+                <Link to="/services" className="flex items-center gap-4 no-underline group">
+                  <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+                    LEARN MORE
+                  </span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                </Link>
+              </div>
             </div>
-
-            <Link to="/services">
-              <Button variant="ghost" className="text-white hover:text-primary hover:bg-transparent p-0 h-auto font-light text-lg gap-2">
-                LEARN MORE →
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
 
       {/* Consultancy Pioneers Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        {/* Matches header EXACTLY */}
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="w-12 h-1 bg-primary mb-6" />
-              <h2 className="text-4xl font-light mb-6"> {/* Light 300 */}
+              {/* Title - 4 breakpoints */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
                 Consultancy Pioneers
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6 font-extralight"> {/* ExtraLight 200 */}
+              <div className="w-14 h-3 bg-primary mb-6" />
+
+              {/* Description - 3 breakpoints */}
+              <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
                 Our consultancy services provide clients with informed, data-driven guidance 
                 at every stage of their projects. We help optimize designs, control costs, 
                 and ensure compliance with industry standards and local regulations.
               </p>
-              <Link to="/services">
-                <Button className="bg-primary hover:bg-primary/90 text-white gap-2">
+              <Link to="/services" className="flex items-center gap-4 no-underline group">
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
                   LEARN MORE
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                </span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
               </Link>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
@@ -237,7 +262,8 @@ const Home = () => {
 
       {/* Architecture Engineering Section */}
       <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
+        {/* Matches header EXACTLY */}
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1">
               <img
@@ -247,16 +273,18 @@ const Home = () => {
               />
             </div>
             <div className="order-1 md:order-2">
-              <h2 className="text-4xl font-light mb-6"> {/* Light 300 */}
+              {/* Title - 4 breakpoints */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
                 Forefront in Architecture Engineering
               </h2>
               <div className="w-12 h-1 bg-primary mb-6" />
-              <p className="text-muted-foreground leading-relaxed mb-6 font-extralight"> {/* ExtraLight 200 */}
+              {/* Description - 3 breakpoints */}
+              <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
                 Our architectural team brings creativity and precision together to transform 
                 ideas into structurally sound and visually compelling spaces.
               </p>
               <Link to="/services">
-                <Button className="bg-primary hover:bg-primary/90 text-white gap-2">
+                <Button className="bg-primary hover:bg-primary/90 text-white gap-2 text-base sm:text-lg">
                   LEARN MORE
                   <ArrowRight className="w-4 h-4" />
                 </Button>
