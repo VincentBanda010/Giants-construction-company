@@ -324,43 +324,64 @@ const About = () => {
             <div className="w-16 h-1 bg-primary" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
             {[
               {
-                name: "Blessings Nundwe",
-                title: "Chief Executive Officer",
-                description: "20+ years in construction industry leadership"
+                name: "Blessings Nyatepa",
+                title: "Managing Director",
+                description: "Strategic vision and overall leadership with 20+ years in construction industry management"
               },
               {
-                name: "John Mwale",
-                title: "Operations Director",
-                description: "Specialized in project management and logistics"
+                name: "Mr Saiton",
+                title: "Project Engineer",
+                description: "Oversees construction timelines, budgets, and quality control for all projects"
               },
               {
-                name: "Sarah Banda",
-                title: "Technical Director",
-                description: "Expert in sustainable architecture and design"
+                name: "Henderson Chagoma",
+                title: "Civil Engineer",
+                description: "Specializes in structural design, site development, and infrastructure projects"
               },
+              {
+                name: "Thabiso Fadweck",
+                title: "Architectural Engineer",
+                description: "Blends architectural design with engineering principles for innovative building solutions"
+              },
+              {
+                name: "Ruth Nsabwe",
+                title: "Electrical Engineer",
+                description: "Expert in building electrical systems, lighting design, and sustainable energy solutions"
+              },
+              {
+                name: "Elisha Kaunda",
+                title: "Finance Director",
+                description: "Manages financial strategy, budgeting, and investment planning for company growth"
+              },
+              {
+                name: "Christopher Kaguwa",
+                title: "Procurement Director",
+                description: "Leads material sourcing, vendor relations, and supply chain optimization"
+              }
             ].map((leader, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg 
-                                        hover:shadow-2xl transition-shadow duration-300">
+                                        hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                 {/* Placeholder for Profile Image */}
-                <div className="h-64 bg-gradient-to-br from-primary/10 to-secondary/10 
-                              flex items-center justify-center">
-                  <div className="w-32 h-32 rounded-full bg-white/80 flex items-center justify-center 
-                                border-4 border-white shadow-lg">
-                    <span className="text-4xl font-light text-primary">
+                <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 
+                              flex items-center justify-center relative">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+                  <div className="w-24 h-24 rounded-full bg-white/90 flex items-center justify-center 
+                                border-4 border-white shadow-lg relative z-10">
+                    <span className="text-3xl font-light text-primary">
                       {leader.name.charAt(0)}
                     </span>
                   </div>
                 </div>
                 
-                <div className="p-8">
-                  <h3 className="text-2xl font-light mb-2 text-gray-800">
+                <div className="p-6">
+                  <h3 className="text-xl font-light mb-2 text-gray-800 line-clamp-1">
                     {leader.name}
                   </h3>
-                  <p className="text-primary font-medium mb-4">{leader.title}</p>
-                  <p className="text-gray-600 font-light">
+                  <p className="text-primary font-medium mb-3 text-sm">{leader.title}</p>
+                  <p className="text-gray-600 font-light text-sm line-clamp-2">
                     {leader.description}
                   </p>
                 </div>

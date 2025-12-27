@@ -152,7 +152,7 @@ const InternshipApplication = () => {
 
       {/* Hero Section with Image Background */}
       <section 
-        className="relative min-h-[50vh] md:min-h-[70vh] flex items-center justify-center bg-cover bg-center pt-24 md:pt-20 pb-16 md:pb-20"
+        className="relative min-h-[50vh] md:min-h-[70vh] flex items-center justify-center bg-cover bg-center pt-28 md:pt-28 pb-16 md:pb-20"
         style={{ backgroundImage: `url(${internshipHeroImage})` }}
       >
         <div className="absolute inset-0 bg-black/60" />
@@ -217,7 +217,7 @@ const InternshipApplication = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm md:text-base"
-                      placeholder="John"
+                      placeholder="Zora"
                     />
                   </div>
                   <div className="space-y-2 md:space-y-3">
@@ -231,7 +231,7 @@ const InternshipApplication = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm md:text-base"
-                      placeholder="Doe"
+                      placeholder="Walusungu"
                     />
                   </div>
                 </div>
@@ -248,7 +248,7 @@ const InternshipApplication = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm md:text-base"
-                      placeholder="john@example.com"
+                      placeholder="zorawalusungu@example.com"
                     />
                   </div>
                   <div className="space-y-2 md:space-y-3">
