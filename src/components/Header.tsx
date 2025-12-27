@@ -53,18 +53,20 @@ const Header = () => {
       <div className="mx-auto px-10 sm:px-12 lg:px-24 xl:px-26">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Reduced size to fit better with padding */}
-          <Link to="/" className="flex items-center group relative overflow-hidden flex-shrink-0">
-            <div className="relative">
-              <div className="relative w-40 md:w-56 h-10 md:h-12 from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-2 md:p-3 border border-gray-700/50 shadow-lg md:shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <img
-                  src={logoImage}
-                  alt="Giants Construction Logo"
-                  className="w-full h-full object-contain relative z-10 filter drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </Link>
+<Link to="/" className="flex items-center group relative overflow-hidden flex-shrink-0">
+  <div className="relative">
+    <div className="relative w-40 md:w-56 h-10 md:h-12 from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-2 md:p-3 border border-gray-700/50 shadow-lg md:shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <img
+          src={logoImage}
+          alt="Giants Construction Logo"
+          className="w-[250%] h-[250%] object-contain filter drop-shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</Link>
 
           {/* Desktop Navigation - Horizontally Aligned */}
           <nav className="hidden lg:flex items-center justify-center flex-1 mx-8">
