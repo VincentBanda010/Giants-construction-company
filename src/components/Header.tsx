@@ -112,11 +112,11 @@ const Header = () => {
               <div className={`transition-all duration-500 overflow-hidden rounded-2xl ${
                 isSearchOpen ? 'w-64' : 'w-12'
               }`}>
-                <div className="relative bg-gradient-to-br from-gray-800/50 backdrop-blur-md border border-gray-700/30 rounded-2xl group-hover/search:border-primary/30 transition-all duration-300">
+                <div className="relative from-gray-900 to-gray-800 backdrop-blur-md border border-gray-700/30 rounded-2xl group-hover/search:border-primary/30 transition-all duration-300">
                   <div className="flex items-center p-2">
                     <button
                       onClick={() => setIsSearchOpen(!isSearchOpen)}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center border border-gray-600/30 hover:border-primary/50 hover:scale-110 transition-all duration-300 flex-shrink-0"
+                      className="w-8 h-8 rounded-full from-gray-900 to-gray-800 flex items-center justify-center border border-gray-700/50 hover:border-primary/50 hover:scale-110 transition-all duration-300 flex-shrink-0"
                     >
                       <Search className="w-4 h-4 text-gray-300" />
                     </button>
@@ -133,7 +133,7 @@ const Header = () => {
                     {isSearchOpen && (
                       <button
                         onClick={() => setIsSearchOpen(false)}
-                        className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center border border-gray-600/30 hover:border-red-500/50 transition-all duration-300 flex-shrink-0 ml-2"
+                        className="w-8 h-8 rounded-full from-gray-900 to-gray-800 flex items-center justify-center border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 flex-shrink-0 ml-2"
                       >
                         <X className="w-4 h-4 text-gray-300" />
                       </button>
@@ -144,32 +144,41 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button - Always Visible */}
+          {/* Mobile Menu Button - Always Visible with Logo Background */}
           <div className="flex items-center lg:hidden gap-3">
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50 shadow-lg group/mobile-search relative"
-            >
+            {/* Search Button with Logo Background */}
+            <div className="relative group/mobile-search">
               <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-0 group-hover/mobile-search:opacity-100"></div>
-              <Search className="w-5 h-5 text-gray-300 relative z-10" />
-            </button>
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="relative w-10 h-10 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-search:border-primary/30 group-hover/mobile-search:scale-105"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/mobile-search:translate-x-full transition-transform duration-1000"></div>
+                <Search className="w-5 h-5 text-gray-300 relative z-10" />
+              </button>
+            </div>
             
-            <button
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50 shadow-lg relative group"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <div className="relative w-6 h-6">
-                <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
-                  mobileMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-1'
-                }`}></span>
-                <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
-                  mobileMenuOpen ? 'opacity-0' : 'opacity-100'
-                }`}></span>
-                <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
-                  mobileMenuOpen ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-1'
-                }`}></span>
-              </div>
-            </button>
+            {/* Menu Button with Logo Background */}
+            <div className="relative group/mobile-menu">
+              <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-0 group-hover/mobile-menu:opacity-100"></div>
+              <button
+                className="relative w-10 h-10 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-menu:border-primary/30 group-hover/mobile-menu:scale-105"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/mobile-menu:translate-x-full transition-transform duration-1000"></div>
+                <div className="relative w-6 h-6">
+                  <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-1'
+                  }`}></span>
+                  <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}></span>
+                  <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-1'
+                  }`}></span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -178,7 +187,7 @@ const Header = () => {
           <div className="lg:hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-xl pt-20 px-4 sm:px-6 animate-fadeIn">
             <div className="max-w-md mx-auto">
               <div className="relative">
-                <div className="flex items-center bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
+                <div className="flex items-center from-gray-900 to-gray-800 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
                   <Search className="w-5 h-5 text-gray-400 mr-3" />
                   <input
                     type="text"
@@ -205,77 +214,96 @@ const Header = () => {
           ? 'opacity-100 visible' 
           : 'opacity-0 invisible pointer-events-none'
       }`}>
-        {/* Semi-transparent backdrop - click to close */}
+        {/* Semi-transparent backdrop with blur - click to close */}
         <div 
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/60 backdrop-blur-md"
           onClick={() => setMobileMenuOpen(false)}
         />
         
-        {/* Mobile Menu Content - Slides down from top */}
-        <div className={`absolute inset-x-0 top-0 h-[85vh] bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 shadow-2xl rounded-b-3xl transform transition-transform duration-500 ${
+        {/* Mobile Menu Content - Modern Glass Cards Design */}
+        <div className={`absolute inset-x-0 top-0 h-[85vh] bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-800/70 backdrop-blur-xl shadow-2xl rounded-b-3xl transform transition-transform duration-500 ${
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}>
-          {/* Close Button at Top Right */}
+          {/* Close Button */}
           <div className="absolute top-6 right-6 z-10">
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
+              className="relative w-14 h-14 from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
             >
-              <X className="w-7 h-7 text-gray-300 group-hover:text-white transition-colors" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              <X className="w-7 h-7 text-gray-300 group-hover:text-white transition-colors relative z-10" />
             </button>
           </div>
           
           {/* Menu Content */}
           <div className="pt-24 pb-8 px-6 h-full flex flex-col">
             {/* Navigation Header */}
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">Menu</h2>
-              <p className="text-gray-400">Navigate through our site</p>
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-white mb-3">Navigation</h2>
+              <div className="w-20 h-1 bg-primary mx-auto mb-4"></div>
+              <p className="text-gray-300">Select an option below</p>
             </div>
 
-            {/* Navigation Items - Large and clear */}
-            <div className="flex-1 space-y-3 px-4 overflow-y-auto">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center p-5 rounded-2xl transition-all duration-300 ${
-                    isActive(item.path)
-                      ? 'bg-gradient-to-r from-primary/20 to-orange-500/20 border-2 border-primary/50 shadow-lg'
-                      : 'bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-700/50 hover:border-primary/30 hover:scale-[1.02]'
-                  }`}
-                >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-4 ${
-                    isActive(item.path)
-                      ? 'bg-gradient-to-br from-primary to-orange-500'
-                      : 'bg-gray-800'
-                  }`}>
-                    <div className={isActive(item.path) ? 'text-white' : 'text-gray-300'}>
-                      {item.icon}
+            {/* Navigation Items - Modern Glass Cards */}
+            <div className="flex-1 px-2 overflow-y-auto">
+              <div className="grid grid-cols-1 gap-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`group/nav-item relative overflow-hidden rounded-2xl p-5 transition-all duration-500 ${
+                      isActive(item.path)
+                        ? 'bg-gradient-to-r from-primary/30 via-primary/20 to-primary/10 border-l-4 border-primary'
+                        : 'bg-gray-900/30 hover:bg-gray-800/40 border-l-4 border-transparent hover:border-primary/30'
+                    }`}
+                  >
+                    {/* Background shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/nav-item:translate-x-full transition-transform duration-1000"></div>
+                    
+                    <div className="relative flex items-center space-x-4">
+                      {/* Icon Circle */}
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isActive(item.path)
+                          ? 'bg-gradient-to-br from-primary to-orange-500 shadow-lg shadow-primary/30'
+                          : 'bg-gray-800/60 group-hover/nav-item:bg-gray-700/80'
+                      }`}>
+                        <div className={isActive(item.path) ? 'text-white' : 'text-gray-300 group-hover/nav-item:text-white'}>
+                          {item.icon}
+                        </div>
+                      </div>
+                      
+                      {/* Text Content */}
+                      <div className="flex-1">
+                        <div className={`text-lg font-semibold transition-colors duration-300 ${
+                          isActive(item.path) ? 'text-primary' : 'text-white group-hover/nav-item:text-primary/80'
+                        }`}>
+                          {item.name}
+                        </div>
+                        <div className={`text-sm transition-colors duration-300 ${
+                          isActive(item.path) ? 'text-primary/80' : 'text-gray-400 group-hover/nav-item:text-gray-300'
+                        }`}>
+                          {item.path === "/contact" ? "Get in touch →" : "Explore more →"}
+                        </div>
+                      </div>
+                      
+                      {/* Arrow Indicator */}
+                      <div className={`transform transition-transform duration-300 ${
+                        isActive(item.path) ? 'translate-x-1' : 'group-hover/nav-item:translate-x-1'
+                      }`}>
+                        <ChevronRight className={`w-5 h-5 ${
+                          isActive(item.path) ? 'text-primary' : 'text-gray-500 group-hover/nav-item:text-primary'
+                        }`} />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className={`text-lg font-semibold ${
-                      isActive(item.path) ? 'text-primary' : 'text-white'
-                    }`}>
-                      {item.name}
-                    </div>
-                    <div className="text-gray-400 text-sm mt-1">
-                      {item.path === "/contact" ? "Get in touch with us" : "Click to explore"}
-                    </div>
-                  </div>
-                  <ChevronRight className={`w-6 h-6 ${
-                    isActive(item.path) ? 'text-primary' : 'text-gray-500'
-                  }`} />
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
-
-            {/* Close hint at bottom */}
-            <div className="text-center pt-4 mt-4 border-t border-gray-700/50">
-              <p className="text-gray-500 text-sm">
-                Tap outside or X button to close
+            
+            <div className="text-center pt-6 mt-4">
+              <p className="text-gray-400 text-sm mt-3">
+                © Giants Construction & Consultancy
               </p>
             </div>
           </div>
