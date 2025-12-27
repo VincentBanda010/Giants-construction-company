@@ -14,7 +14,7 @@ import logoImage from "@/assets/logo.png";
 const Footer = () => {
   return (
     <footer className="bg-secondary text-white w-full">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-12 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Logo & Description */}
@@ -22,7 +22,7 @@ const Footer = () => {
             <img
               src={logoImage}
               alt="Giants Construction Logo"
-              className="w-44 h-auto"
+              className="w-50 h-auto"
             />
             <p className="text-sm text-white/80 leading-relaxed max-w-xs">
               Building excellence with integrity and innovation. We transform

@@ -11,6 +11,7 @@ import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Internship from "./pages/Internship";
 import NotFound from "./pages/NotFound";
+import InternshipApplication from "./components/InternshipForm";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/internship" element={<Internship />} />
           <Route path="*" element={<NotFound />} />
+           <Route path="/internship-application" element={<InternshipApplication />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

@@ -8,8 +8,10 @@ import heroImage from "@/assets/hero-construction.png";
 import heroImage2 from "@/assets/heroImage2.jpg"; 
 import heroImage3 from "@/assets/heroImage3.jpg"; 
 import constructorImage from "@/assets/constructor-worker.png";
-import consultancyImage from "@/assets/consultancy-team.png";
 import architectureImage from "@/assets/architecture-plans.jpg";
+import equipmentImage from "@/assets/hireEquip.jpg";
+import electricianImage from "@/assets/electrician.png";
+import consultancyTeamImage from "@/assets/consultancy.jpg";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,7 +85,7 @@ const Home = () => {
         
         <div className="absolute inset-0 bg-black/50" />
         
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="container mx-auto px-12 lg:px-24 relative z-10">
           <div className={`max-w-2xl text-white transition-opacity duration-500 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}>
@@ -134,7 +136,7 @@ const Home = () => {
 
       {/* Experience Section */}
       <section className="py-32 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+        <div className="container mx-auto px-12 lg:px-24">
           <div>
             <p className="text-secondary text-base sm:text-lg md:text-xl font-semibold tracking-wider mb-2 text-left">
               Years of Experience in
@@ -174,9 +176,9 @@ const Home = () => {
         style={{ backgroundImage: `url(${constructorImage})` }}
       >
         <div className="absolute inset-0 bg-black/60" />
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="container mx-auto px-12 lg:px-24 relative z-10">
           <div> 
-            <div className="w-14 h-2.5 bg-primary mb-6" />
+            <div className="w-20 h-1 bg-primary mb-6" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-8 leading-tight text-white">
               We are Best<br />
               Constructors in<br />
@@ -207,14 +209,14 @@ const Home = () => {
       </section>
 
       {/* Consultancy Pioneers Section */}
-      <section className="py-20 bg-gray-200"> 
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-20 bg-gray-50"> 
+        <div className="container mx-auto px-12 lg:px-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4">
                 Consultancy Pioneers
               </h2>
-              <div className="w-14 h-3 bg-primary mb-6" />
+              <div className="w-20 h-1 bg-primary mb-6" />
 
               <p className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
                 Our consultancy services provide clients with informed, data-driven guidance 
@@ -230,9 +232,11 @@ const Home = () => {
                 </div>
               </Link>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden">
+            <div className="relative h-96 rounded-lg overflow-hidden group">
+              {/* Black overlay with opacity */}
+              <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
-                src={consultancyImage}
+                src={consultancyTeamImage}
                 alt="Consultancy Team"
                 className="w-full h-full object-cover"
               />
@@ -243,9 +247,11 @@ const Home = () => {
 
       {/* Architecture Engineering Section */}
       <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
+        <div className="container mx-auto px-12 lg:px-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1">
+            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group">
+              {/* Black overlay with opacity */}
+              <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
                 src={architectureImage}
                 alt="Architecture Plans"
@@ -256,7 +262,81 @@ const Home = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
                 Forefront in Architecture Engineering
               </h2>
-              <div className="w-14 h-3 bg-primary mb-6" />
+              <div className="w-20 h-1 bg-primary mb-6" />
+              <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
+                Our architectural team brings creativity and precision together to transform 
+                ideas into structurally sound and visually compelling spaces.
+              </p>
+              <Link to="/services" className="flex items-center gap-4 no-underline group">
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+                  LEARN MORE
+                </span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Equipment for hire Section */}
+      <section className="py-20 bg-gray-50"> 
+        <div className="container mx-auto px-12 lg:px-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4">
+                Hire Reliable<br />
+                Construction<br />
+                Equipment Today
+              </h2>
+              <div className="w-20 h-1 bg-primary mb-6" />
+
+              <p className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
+                Partner with the leaders in construction equipment rental 
+                where innovation meets reliability.
+              </p>
+              <Link to="/services" className="flex items-center gap-4 no-underline group">
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+                  HIRE NOW
+                </span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+              </Link>
+            </div>
+            <div className="relative h-96 rounded-lg overflow-hidden group">
+              {/* Black overlay with opacity */}
+              <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
+              <img
+                src={equipmentImage}
+                alt="Construction Equipment"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Electrical Engineering Section */}
+      <section className="py-20 bg-muted">
+        <div className="container mx-auto px-12 lg:px-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group">
+              {/* Black overlay with opacity */}
+              <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
+              <img
+                src={electricianImage}
+                alt="Electrical Services"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
+                Electrical<br />
+                Services
+              </h2>
+              <div className="w-20 h-1 bg-primary mb-6" />
               <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-extralight">
                 Our architectural team brings creativity and precision together to transform 
                 ideas into structurally sound and visually compelling spaces.

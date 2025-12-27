@@ -48,7 +48,7 @@ const Header = () => {
       {/* Animated border effect */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
       
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-12 lg:px-24">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Increased Size */}
           <Link to="/" className="flex items-center group relative overflow-hidden flex-shrink-0">
@@ -65,8 +65,8 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation - Horizontally Aligned */}
-          <nav className="hidden lg:flex items-center justify-center flex-1 mx-8" onMouseMove={handleMouseMove}>
-            <div className="relative bg-gradient-to-b from-gray-800/30 to-gray-900/30 backdrop-blur-md rounded-2xl p-1 border border-gray-700/30 flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center justify-center flex-1 mx-8">
+            <div className="flex items-center space-x-1">
               {navItems.map((item) => {
                 const isItemHovered = hoveredNav === item.path;
                 const isItemActive = isActive(item.path);
@@ -75,56 +75,35 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="relative group/nav flex items-center gap-2 px-5 py-3 rounded-xl transition-all duration-300 min-w-[120px] justify-center"
+                    className="relative group/nav flex items-center gap-2 px-6 py-3 transition-all duration-300"
                     onMouseEnter={() => setHoveredNav(item.path)}
                     onMouseLeave={() => setHoveredNav(null)}
                   >
-                    {/* Interactive gradient following mouse */}
-                    <div 
-                      className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${
-                        isItemHovered ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      style={{
-                        background: isItemHovered 
-                          ? `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.15), transparent 150px)`
-                          : 'transparent'
-                      }}
-                    ></div>
-                    
-                    {/* Glass morphic background */}
-                    <div className={`absolute inset-0 rounded-xl backdrop-blur-sm border transition-all duration-300 ${
-                      isItemActive 
-                        ? 'bg-gradient-to-r from-primary/20 to-orange-500/20 border-primary/30' 
-                        : 'bg-white/5 border-transparent group-hover/nav:border-gray-600/30'
-                    }`}></div>
-                    
                     {/* Icon */}
-                    <div className={`relative z-10 transition-transform duration-300 ${
-                      isItemActive ? 'text-primary scale-110' : 'text-gray-400 group-hover/nav:text-white group-hover/nav:scale-110'
+                    <div className={`transition-colors duration-300 ${
+                      isItemActive ? 'text-primary' : 'text-gray-400 group-hover/nav:text-white'
                     }`}>
                       {item.icon}
                     </div>
                     
-                    {/* Text with depth */}
-                    <span className={`relative z-10 font-medium tracking-wide text-sm transition-all duration-300 whitespace-nowrap ${
+                    {/* Text */}
+                    <span className={`font-medium tracking-wide text-sm transition-colors duration-300 whitespace-nowrap ${
                       isItemActive 
-                        ? 'text-primary drop-shadow-lg' 
-                        : 'text-gray-300 group-hover/nav:text-white group-hover/nav:drop-shadow-md'
+                        ? 'text-primary' 
+                        : 'text-gray-300 group-hover/nav:text-white'
                     }`}>
                       {item.name}
                     </span>
                     
                     {/* Active indicator line */}
                     {isItemActive && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-primary to-orange-500 rounded-full animate-pulse"></div>
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full"></div>
                     )}
                     
-                    {/* Hover arrow indicator */}
-                    <div className={`absolute -right-1 top-1/2 -translate-y-1/2 transition-all duration-300 ${
-                      isItemHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
-                    }`}>
-                      <ChevronRight className="w-3 h-3 text-primary" />
-                    </div>
+                    {/* Hover indicator line */}
+                    {!isItemActive && isItemHovered && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary/30 rounded-full"></div>
+                    )}
                   </Link>
                 );
               })}
@@ -218,7 +197,7 @@ const Header = () => {
 
         {/* Mobile Search Overlay */}
         {isSearchOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-xl pt-20 px-4 animate-fadeIn">
+          <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-xl pt-20 px-12 animate-fadeIn">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <div className="flex items-center bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
@@ -243,7 +222,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-40 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 pt-20 px-4 pb-8 overflow-y-auto animate-fadeIn">
+          <div className="lg:hidden fixed inset-0 z-40 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 pt-20 px-12 pb-8 overflow-y-auto animate-fadeIn">
             <div className="max-w-md mx-auto">
               {/* Navigation Cards - Horizontal Scroll for Mobile */}
               <div className="flex space-x-3 mb-8 pb-4 overflow-x-auto scrollbar-hide">
