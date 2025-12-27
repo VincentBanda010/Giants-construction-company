@@ -216,12 +216,12 @@ const Header = () => {
       }`}>
         {/* Semi-transparent backdrop with blur - click to close */}
         <div 
-          className="absolute inset-0 bg-black/60 backdrop-blur-md"
+          className="absolute inset-0 bg-secondary/80 backdrop-blur-md"
           onClick={() => setMobileMenuOpen(false)}
         />
         
-        {/* Mobile Menu Content - Modern Glass Cards Design */}
-        <div className={`absolute inset-x-0 top-0 h-[85vh] bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-800/70 backdrop-blur-xl shadow-2xl rounded-b-3xl transform transition-transform duration-500 ${
+        {/* Mobile Menu Content - Using secondary color (#00294B) background */}
+        <div className={`absolute inset-x-0 top-0 h-[85vh] bg-gradient-to-b from-secondary via-secondary/95 to-secondary/90 backdrop-blur-xl shadow-2xl rounded-b-3xl transform transition-transform duration-500 ${
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}>
           {/* Close Button */}
@@ -244,7 +244,7 @@ const Header = () => {
               <p className="text-gray-300">Select an option below</p>
             </div>
 
-            {/* Navigation Items - Modern Glass Cards */}
+            {/* Navigation Items - Cards with complementary colors */}
             <div className="flex-1 px-2 overflow-y-auto">
               <div className="grid grid-cols-1 gap-4">
                 {navItems.map((item) => (
@@ -254,21 +254,21 @@ const Header = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`group/nav-item relative overflow-hidden rounded-2xl p-5 transition-all duration-500 ${
                       isActive(item.path)
-                        ? 'bg-gradient-to-r from-primary/30 via-primary/20 to-primary/10 border-l-4 border-primary'
-                        : 'bg-gray-900/30 hover:bg-gray-800/40 border-l-4 border-transparent hover:border-primary/30'
+                        ? 'bg-gradient-to-r from-primary/40 via-primary/30 to-primary/20 border-l-4 border-primary shadow-lg'
+                        : 'bg-white/10 hover:bg-white/15 border-l-4 border-transparent hover:border-primary/50 backdrop-blur-sm'
                     }`}
                   >
                     {/* Background shimmer effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/nav-item:translate-x-full transition-transform duration-1000"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/nav-item:translate-x-full transition-transform duration-1000"></div>
                     
                     <div className="relative flex items-center space-x-4">
                       {/* Icon Circle */}
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                         isActive(item.path)
                           ? 'bg-gradient-to-br from-primary to-orange-500 shadow-lg shadow-primary/30'
-                          : 'bg-gray-800/60 group-hover/nav-item:bg-gray-700/80'
+                          : 'bg-white/20 group-hover/nav-item:bg-white/25'
                       }`}>
-                        <div className={isActive(item.path) ? 'text-white' : 'text-gray-300 group-hover/nav-item:text-white'}>
+                        <div className={isActive(item.path) ? 'text-white' : 'text-gray-200 group-hover/nav-item:text-white'}>
                           {item.icon}
                         </div>
                       </div>
@@ -276,12 +276,12 @@ const Header = () => {
                       {/* Text Content */}
                       <div className="flex-1">
                         <div className={`text-lg font-semibold transition-colors duration-300 ${
-                          isActive(item.path) ? 'text-primary' : 'text-white group-hover/nav-item:text-primary/80'
+                          isActive(item.path) ? 'text-white' : 'text-white group-hover/nav-item:text-primary/90'
                         }`}>
                           {item.name}
                         </div>
                         <div className={`text-sm transition-colors duration-300 ${
-                          isActive(item.path) ? 'text-primary/80' : 'text-gray-400 group-hover/nav-item:text-gray-300'
+                          isActive(item.path) ? 'text-white/80' : 'text-gray-300 group-hover/nav-item:text-gray-200'
                         }`}>
                           {item.path === "/contact" ? "Get in touch →" : "Explore more →"}
                         </div>
@@ -292,7 +292,7 @@ const Header = () => {
                         isActive(item.path) ? 'translate-x-1' : 'group-hover/nav-item:translate-x-1'
                       }`}>
                         <ChevronRight className={`w-5 h-5 ${
-                          isActive(item.path) ? 'text-primary' : 'text-gray-500 group-hover/nav-item:text-primary'
+                          isActive(item.path) ? 'text-primary' : 'text-gray-400 group-hover/nav-item:text-primary'
                         }`} />
                       </div>
                     </div>
@@ -301,8 +301,9 @@ const Header = () => {
               </div>
             </div>
             
+            {/* Footer with company name */}
             <div className="text-center pt-6 mt-4">
-              <p className="text-gray-400 text-sm mt-3">
+              <p className="text-gray-400 text-sm">
                 © Giants Construction & Consultancy
               </p>
             </div>
