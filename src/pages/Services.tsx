@@ -59,63 +59,66 @@ const Services = () => {
 
       {/* Hero Section with Service Categories */}
       <section
-        className="relative min-h-screen flex items-end bg-cover bg-center pt-20 pb-20"
+        className="relative min-h-[60vh] flex items-end bg-cover bg-center pt-28 pb-16 sm:pb-20"
         style={{ backgroundImage: `url(${servicesHeroImage})` }}
       >
         <div className="absolute inset-0 bg-black/70" />
-        <div className="container mx-auto px-12 lg:px-24 relative z-10">
-          <div className="w-full mx-auto">
-            {/* Service Categories - Spread to page margins */}
-            <div className="flex justify-between items-end text-white mb-4 w-full">
-              <button 
-                onClick={() => scrollToSection('construction-section')}
-                className="text-left group cursor-pointer transition-all duration-300 hover:text-primary"
-              >
-                <h3 className="text-3xl font-light group-hover:scale-105 transition-transform duration-300">
-                  Construction
-                </h3>
-              </button>
-              <button 
-                onClick={() => scrollToSection('consultancy-section')}
-                className="text-center group cursor-pointer transition-all duration-300 hover:text-primary"
-              >
-                <h3 className="text-3xl font-light group-hover:scale-105 transition-transform duration-300">
-                  Consultancy
-                </h3>
-              </button>
-              <button 
-                onClick={() => scrollToSection('architecture-section')}
-                className="text-center group cursor-pointer transition-all duration-300 hover:text-primary"
-              >
-                <h3 className="text-3xl font-light group-hover:scale-105 transition-transform duration-300">
-                  Architecture
-                </h3>
-              </button>
-              <button 
-                onClick={() => scrollToSection('general-services-section')}
-                className="text-right group cursor-pointer transition-all duration-300 hover:text-primary"
-              >
-                <h3 className="text-3xl font-light group-hover:scale-105 transition-transform duration-300">
-                  General Services
-                </h3>
-              </button>
+        <div className="container mx-auto px-10 sm:px-12 md:px-14 lg:px-24 xl:px-26 relative z-10">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 sm:gap-0">
+            {/* Left side - List with responsive text */}
+            <div className="text-white w-full sm:w-auto px-4 sm:px-0 sm:ml-4 md:ml-8 lg:ml-16">
+              <ul className="space-y-4 sm:space-y-5 lg:space-y-6 text-lg sm:text-xl lg:text-2xl">
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('construction-section')}
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
+                  >
+                    Construction
+                    <div className="w-24 sm:w-28 lg:w-32 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('consultancy-section')}
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
+                  >
+                    Consultancy
+                    <div className="w-24 sm:w-28 lg:w-28 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('architecture-section')}
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
+                  >
+                    Electrical Services
+                    <div className="w-36 sm:w-40 lg:w-44 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('general-services-section')}
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
+                  >
+                    Equipment for Hire
+                    <div className="w-32 sm:w-36 lg:w-40 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                  </button>
+                </li>
+              </ul>
             </div>
-
-            {/* White line spanning full page width */}
-            <div className="w-full h-0.5 bg-white mb-12"></div>
             
-            {/* Portfolio Link - Right aligned */}
-            <div className="text-white text-right">
+            {/* Right side - Portfolio Link */}
+            <div className="w-full sm:w-auto px-4 sm:px-0 sm:mr-4 md:mr-8 lg:mr-16 mt-4 sm:mt-0">
               <Link 
                 to="/portfolio" 
-                className="flex items-center justify-end gap-4 no-underline group"
+                className="flex items-center gap-3 group hover:opacity-90 transition-opacity duration-300 justify-center sm:justify-start"
               >
-                <span className="text-white text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors duration-300">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                  <ArrowRight className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-base font-medium text-white whitespace-nowrap">
                   SEE OUR PORTFOLIO
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 group-hover:bg-primary/80 transition-colors duration-300">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
               </Link>
             </div>
           </div>

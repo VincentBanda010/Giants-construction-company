@@ -50,12 +50,12 @@ const Header = () => {
       {/* Animated border effect */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto px-10 sm:px-12 lg:px-24 xl:px-26">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Responsive Size */}
+          {/* Logo - Reduced size to fit better with padding */}
           <Link to="/" className="flex items-center group relative overflow-hidden flex-shrink-0">
             <div className="relative">
-              <div className="relative w-48 md:w-64 h-12 md:h-15 from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 border border-gray-700/50 shadow-lg md:shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
+              <div className="relative w-40 md:w-56 h-10 md:h-12 from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-2 md:p-3 border border-gray-700/50 shadow-lg md:shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 <img
                   src={logoImage}
@@ -144,37 +144,37 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button - Always Visible with Logo Background */}
+          {/* Mobile Menu Button - Adjusted for better spacing */}
           <div className="flex items-center lg:hidden gap-3">
-            {/* Search Button with Logo Background */}
+            {/* Search Button */}
             <div className="relative group/mobile-search">
               <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-0 group-hover/mobile-search:opacity-100"></div>
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="relative w-10 h-10 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-search:border-primary/30 group-hover/mobile-search:scale-105"
+                className="relative w-9 h-9 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-search:border-primary/30 group-hover/mobile-search:scale-105"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/mobile-search:translate-x-full transition-transform duration-1000"></div>
-                <Search className="w-5 h-5 text-gray-300 relative z-10" />
+                <Search className="w-4 h-4 text-gray-300 relative z-10" />
               </button>
             </div>
             
-            {/* Menu Button with Logo Background */}
+            {/* Menu Button */}
             <div className="relative group/mobile-menu">
               <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-0 group-hover/mobile-menu:opacity-100"></div>
               <button
-                className="relative w-10 h-10 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-menu:border-primary/30 group-hover/mobile-menu:scale-105"
+                className="relative w-9 h-9 from-gray-900 to-gray-800 rounded-full flex items-center justify-center border border-gray-700/50 shadow-lg transition-all duration-500 group-hover/mobile-menu:border-primary/30 group-hover/mobile-menu:scale-105"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/mobile-menu:translate-x-full transition-transform duration-1000"></div>
-                <div className="relative w-6 h-6">
+                <div className="relative w-5 h-5">
                   <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
-                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-1'
+                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0.5'
                   }`}></span>
                   <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
                     mobileMenuOpen ? 'opacity-0' : 'opacity-100'
                   }`}></span>
                   <span className={`absolute left-0 w-full h-0.5 bg-gray-300 rounded-full transition-all duration-300 ${
-                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-1'
+                    mobileMenuOpen ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-0.5'
                   }`}></span>
                 </div>
               </button>
@@ -184,7 +184,7 @@ const Header = () => {
 
         {/* Mobile Search Overlay */}
         {isSearchOpen && (
-          <div className="lg:hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-xl pt-20 px-4 sm:px-6 animate-fadeIn">
+          <div className="lg:hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-xl pt-20 px-10 sm:px-12 animate-fadeIn">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <div className="flex items-center from-gray-900 to-gray-800 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
@@ -225,18 +225,18 @@ const Header = () => {
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}>
           {/* Close Button */}
-          <div className="absolute top-6 right-6 z-10">
+          <div className="absolute top-6 right-10 sm:right-12 z-10">
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="relative w-14 h-14 from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
+              className="relative w-12 h-12 from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              <X className="w-7 h-7 text-gray-300 group-hover:text-white transition-colors relative z-10" />
+              <X className="w-6 h-6 text-gray-300 group-hover:text-white transition-colors relative z-10" />
             </button>
           </div>
           
           {/* Menu Content */}
-          <div className="pt-24 pb-8 px-6 h-full flex flex-col">
+          <div className="pt-24 pb-8 px-10 sm:px-12 h-full flex flex-col">
             {/* Navigation Header */}
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-white mb-3">Navigation</h2>

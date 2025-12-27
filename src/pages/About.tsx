@@ -32,75 +32,75 @@ const About = () => {
     <div className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section - Responsive */}
       <section
-        className="relative min-h-[60vh] flex items-end bg-cover bg-center pt-20 pb-20" 
+        className="relative min-h-[60vh] flex items-end bg-cover bg-center pt-28 pb-16 sm:pb-20"
         style={{ backgroundImage: `url(${aboutHeroImage})` }}
       >
         <div className="absolute inset-0 bg-black/60" />
-        <div className="container mx-auto px-12 lg:px-24 relative z-10">
-          <div className="flex justify-between items-end">
-            {/* Left side - List with larger text */}
-            <div className="text-white ml-8 lg:ml-16">
-              <ul className="space-y-6 text-xl lg:text-2xl">
+        <div className="container mx-auto px-10 sm:px-12 md:px-14 lg:px-24 xl:px-24 relative z-10">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 sm:gap-0">
+            {/* Left side - List with responsive text */}
+            <div className="text-white w-full sm:w-auto px-4 sm:px-0 sm:ml-4 md:ml-8 lg:ml-16">
+              <ul className="space-y-4 sm:space-y-5 lg:space-y-6 text-lg sm:text-xl lg:text-2xl">
                 <li>
                   <button 
                     onClick={() => scrollToSection('who-are-we')}
-                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer"
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
                   >
                     Who Are We
-                    <div className="w-20 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                    <div className="w-20 sm:w-24 lg:w-20 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
                   </button>
                 </li>
                 <li>
                   <button 
                     onClick={() => scrollToSection('mission-team-values')}
-                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer"
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
                   >
                     Mission, Team, Values
-                    <div className="w-40 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                    <div className="w-32 sm:w-40 lg:w-40 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
                   </button>
                 </li>
                 <li>
                   <button 
                     onClick={() => scrollToSection('strategy')}
-                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer"
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
                   >
                     Strategy
-                    <div className="w-16 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                    <div className="w-16 sm:w-20 lg:w-16 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
                   </button>
                 </li>
                 <li>
                   <button 
                     onClick={() => scrollToSection('pillars')}
-                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer"
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
                   >
                     Pillars
-                    <div className="w-14 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                    <div className="w-14 sm:w-18 lg:w-14 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
                   </button>
                 </li>
                 <li>
                   <button 
                     onClick={() => scrollToSection('leadership')}
-                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer"
+                    className="group text-left hover:text-primary transition-colors duration-300 cursor-pointer w-full sm:w-auto"
                   >
                     Leadership
-                    <div className="w-20 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
+                    <div className="w-20 sm:w-24 lg:w-20 h-0.5 bg-white mt-2 group-hover:bg-primary transition-colors duration-300"></div>
                   </button>
                 </li>
               </ul>
             </div>
             
-            {/* Right side - Professional Chat Button */}
-            <div className="mr-8 lg:mr-16"> 
+            {/* Right side - Professional Chat Button - Responsive positioning */}
+            <div className="w-full sm:w-auto px-4 sm:px-0 sm:mr-4 md:mr-8 lg:mr-16 mt-4 sm:mt-0">
               <button 
                 onClick={() => setIsChatbotOpen(true)}
-                className="flex items-center gap-3 group hover:opacity-90 transition-opacity duration-300"
+                className="flex items-center gap-3 group hover:opacity-90 transition-opacity duration-300 justify-center sm:justify-start"
               >
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
                   <MessageSquare className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-base font-medium text-white">
+                <span className="text-base font-medium text-white whitespace-nowrap">
                   Consult Our Engineer
                 </span>
               </button>
