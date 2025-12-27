@@ -119,7 +119,7 @@ const Header = () => {
               <div className={`transition-all duration-500 overflow-hidden rounded-2xl ${
                 isSearchOpen ? 'w-64' : 'w-12'
               }`}>
-                <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-md border border-gray-700/30 rounded-2xl group-hover/search:border-primary/30 transition-all duration-300">
+                <div className="relative bg-gradient-to-br from-gray-800/50 backdrop-blur-md border border-gray-700/30 rounded-2xl group-hover/search:border-primary/30 transition-all duration-300">
                   <div className="flex items-center p-2">
                     <button
                       onClick={() => setIsSearchOpen(!isSearchOpen)}

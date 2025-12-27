@@ -67,6 +67,34 @@ const Home = () => {
     }, 500);
   };
 
+  // Function to handle smooth scroll to Services page sections
+  const scrollToServiceSection = (sectionId: string) => {
+    // Navigate to services page first
+    const navigateToServices = () => {
+      window.location.href = '/services';
+    };
+
+    // Store the section ID to scroll to after navigation
+    localStorage.setItem('scrollToSection', sectionId);
+    
+    // Navigate
+    navigateToServices();
+  };
+
+  // Initialize scroll from localStorage if coming from another page
+  useEffect(() => {
+    const sectionToScroll = localStorage.getItem('scrollToSection');
+    if (sectionToScroll) {
+      setTimeout(() => {
+        const element = document.getElementById(sectionToScroll);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        localStorage.removeItem('scrollToSection');
+      }, 100);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -98,12 +126,17 @@ const Home = () => {
             </p>
             
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors cursor-pointer">
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <span className="text-base sm:text-lg md:text-xl font-normal tracking-wide text-white">
-                Request a Quote Today
-              </span>
+              <Link 
+                to="/contact"
+                className="flex items-center gap-4 no-underline group"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors cursor-pointer group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
+                </div>
+                <span className="text-base sm:text-lg md:text-xl font-normal tracking-wide text-white group-hover:text-primary/80 transition-colors">
+                  Request a Quote Today
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -159,12 +192,17 @@ const Home = () => {
             </div>
             
             <div className="flex items-center gap-4 justify-end">
-              <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
-                GET TO KNOW US
-              </span>
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
+              <button 
+                onClick={() => scrollToServiceSection('construction-section')}
+                className="flex items-center gap-4 no-underline group"
+              >
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
+                  GET TO KNOW US
+                </span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -194,14 +232,17 @@ const Home = () => {
               </p>
   
               <div className="flex items-center gap-4 justify-end">
-                <Link to="/services" className="flex items-center gap-4 no-underline group">
-                  <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+                <button 
+                  onClick={() => scrollToServiceSection('construction-section')}
+                  className="flex items-center gap-4 no-underline group"
+                >
+                  <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
                     LEARN MORE
                   </span>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
                   </div>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -223,22 +264,25 @@ const Home = () => {
                 at every stage of their projects. We help optimize designs, control costs, 
                 and ensure compliance with industry standards and local regulations.
               </p>
-              <Link to="/services" className="flex items-center gap-4 no-underline group">
-                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+              <button 
+                onClick={() => scrollToServiceSection('consultancy-section')}
+                className="flex items-center gap-4 no-underline group"
+              >
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
                   LEARN MORE
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
+              </button>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden group">
+            <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
               {/* Black overlay with opacity */}
               <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
                 src={consultancyTeamImage}
                 alt="Consultancy Team"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               />
             </div>
           </div>
@@ -249,13 +293,13 @@ const Home = () => {
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-12 lg:px-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group">
+            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group cursor-pointer">
               {/* Black overlay with opacity */}
               <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
                 src={architectureImage}
                 alt="Architecture Plans"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               />
             </div>
             <div className="order-1 md:order-2">
@@ -267,14 +311,17 @@ const Home = () => {
                 Our architectural team brings creativity and precision together to transform 
                 ideas into structurally sound and visually compelling spaces.
               </p>
-              <Link to="/services" className="flex items-center gap-4 no-underline group">
-                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+              <button 
+                onClick={() => scrollToServiceSection('architecture-section')}
+                className="flex items-center gap-4 no-underline group"
+              >
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
                   LEARN MORE
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -296,22 +343,25 @@ const Home = () => {
                 Partner with the leaders in construction equipment rental 
                 where innovation meets reliability.
               </p>
-              <Link to="/services" className="flex items-center gap-4 no-underline group">
-                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+              <button 
+                onClick={() => scrollToServiceSection('general-services-section')}
+                className="flex items-center gap-4 no-underline group"
+              >
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
                   HIRE NOW
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
+              </button>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden group">
+            <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
               {/* Black overlay with opacity */}
               <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
                 src={equipmentImage}
                 alt="Construction Equipment"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               />
             </div>
           </div>
@@ -322,13 +372,13 @@ const Home = () => {
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-12 lg:px-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group">
+            <div className="relative h-96 rounded-lg overflow-hidden order-2 md:order-1 group cursor-pointer">
               {/* Black overlay with opacity */}
               <div className="absolute inset-0 bg-black/30 z-10 transition-all duration-300 group-hover:bg-black/20"></div>
               <img
                 src={electricianImage}
                 alt="Electrical Services"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               />
             </div>
             <div className="order-1 md:order-2">
@@ -341,14 +391,17 @@ const Home = () => {
                 Our architectural team brings creativity and precision together to transform 
                 ideas into structurally sound and visually compelling spaces.
               </p>
-              <Link to="/services" className="flex items-center gap-4 no-underline group">
-                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide">
+              <button 
+                onClick={() => scrollToServiceSection('architecture-section')}
+                className="flex items-center gap-4 no-underline group"
+              >
+                <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors">
                   LEARN MORE
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors group-hover:scale-105">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

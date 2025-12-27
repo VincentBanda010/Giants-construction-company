@@ -4,8 +4,30 @@ import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import contactHeroImage from "@/assets/contact-hero.jpg";
 import mapImage from "@/assets/map.jpg";
+import { useEffect } from "react";
 
 const Contact = () => {
+  // Initialize scroll to contact form section if needed
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Check if we need to scroll to the contact form section
+    const scrollToContactSection = localStorage.getItem('scrollToContactSection');
+    if (scrollToContactSection) {
+      setTimeout(() => {
+        const element = document.getElementById(scrollToContactSection);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        localStorage.removeItem('scrollToContactSection');
+      }, 100);
+    }
+    
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Header />

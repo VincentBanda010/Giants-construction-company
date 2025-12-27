@@ -13,30 +13,45 @@ import financialAnalysisImage from "@/assets/financial-analysis.jpg";
 import marketResearchImage from "@/assets/market-research.jpg";
 import equipmentImage from "@/assets/equipment.jpg";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Services = () => {
-  // Smooth scroll function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const navigate = useNavigate();
 
-  // Portfolio link handler
-  const handlePortfolioClick = () => {
-    alert("Redirecting to portfolio page...");
+  // Function to navigate to contact page with section ID
+  const navigateToContactForm = () => {
+    localStorage.setItem('scrollToContactSection', 'contact-section');
+    navigate('/contact');
   };
 
   // Initialize scroll effects
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     
+    // Check if we need to scroll to a specific section
+    const sectionToScroll = localStorage.getItem('scrollToSection');
+    if (sectionToScroll) {
+      setTimeout(() => {
+        const element = document.getElementById(sectionToScroll);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        localStorage.removeItem('scrollToSection');
+      }, 100);
+    }
+    
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
+
+  // Smooth scroll function for internal navigation
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -164,10 +179,10 @@ const Services = () => {
             </div>
           </div>
 
-          {/* LET'S TALK Button - Fixed */}
+          {/* LET'S TALK Button - Updated to navigate to contact form */}
           <div className="text-right">
-            <Link 
-              to="/contact" 
+            <button 
+              onClick={navigateToContactForm}
               className="flex items-center gap-4 no-underline group ml-auto justify-end"
             >
               <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors duration-300">
@@ -176,7 +191,7 @@ const Services = () => {
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 group-hover:bg-primary/80 transition-colors duration-300">
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -306,10 +321,10 @@ const Services = () => {
             </div>
           </div>
 
-          {/* LET'S TALK Button - Fixed */}
+          {/* LET'S TALK Button - Updated to navigate to contact form */}
           <div className="text-right">
-            <Link 
-              to="/contact" 
+            <button 
+              onClick={navigateToContactForm}
               className="flex items-center gap-4 no-underline group ml-auto justify-end"
             >
               <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors duration-300">
@@ -318,7 +333,7 @@ const Services = () => {
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 group-hover:bg-primary/80 transition-colors duration-300">
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -407,10 +422,10 @@ const Services = () => {
             </div>
           </div>
 
-          {/* LET'S TALK Button - Fixed */}
+          {/* CONTACT FOR EQUIPMENT Button - Updated to navigate to contact form */}
           <div className="text-center">
-            <Link 
-              to="/contact" 
+            <button 
+              onClick={navigateToContactForm}
               className="inline-flex items-center gap-4 no-underline group"
             >
               <span className="text-primary text-sm sm:text-base md:text-lg font-normal tracking-wide group-hover:text-primary/80 transition-colors duration-300">
@@ -419,7 +434,7 @@ const Services = () => {
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 group-hover:bg-primary/80 transition-colors duration-300">
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </Link>
+            </button>
           </div>
 
         </div>
