@@ -48,12 +48,12 @@ const Header = () => {
       {/* Animated border effect */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
       
-      <div className="container mx-auto px-12 lg:px-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Increased Size */}
+          {/* Logo - Responsive Size */}
           <Link to="/" className="flex items-center group relative overflow-hidden flex-shrink-0">
             <div className="relative">
-              <div className="relative w-64 h-15 from-gray-900 to-gray-800 rounded-2xl p-4 border border-gray-700/50 shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
+              <div className="relative w-48 md:w-64 h-12 md:h-15 from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 border border-gray-700/50 shadow-lg md:shadow-2xl group-hover:border-primary/30 transition-all duration-500 group-hover:scale-105">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 <img
                   src={logoImage}
@@ -166,7 +166,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button - Always Visible */}
           <div className="flex items-center lg:hidden gap-3">
             <button
               onClick={() => setIsSearchOpen(true)}
@@ -197,7 +197,7 @@ const Header = () => {
 
         {/* Mobile Search Overlay */}
         {isSearchOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-xl pt-20 px-12 animate-fadeIn">
+          <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-xl pt-20 px-4 sm:px-6 animate-fadeIn">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <div className="flex items-center bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
@@ -219,60 +219,108 @@ const Header = () => {
             </div>
           </div>
         )}
+      </div>
 
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-40 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 pt-20 px-12 pb-8 overflow-y-auto animate-fadeIn">
+      {/* Mobile Navigation - Slides down from top */}
+      <div className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ease-out ${
+        mobileMenuOpen 
+          ? 'top-0 opacity-100 visible' 
+          : '-top-full opacity-0 invisible'
+      }`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800/95 backdrop-blur-xl">
+          
+          {/* Close Button at Top Right */}
+          <div className="absolute top-6 right-6 z-50">
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
+            >
+              <X className="w-7 h-7 text-gray-300 group-hover:text-white transition-colors" />
+            </button>
+          </div>
+          
+          {/* Navigation Content - Starts from top and extends downward */}
+          <div className="pt-32 pb-12 px-6 h-full overflow-y-auto">
             <div className="max-w-md mx-auto">
-              {/* Navigation Cards - Horizontal Scroll for Mobile */}
-              <div className="flex space-x-3 mb-8 pb-4 overflow-x-auto scrollbar-hide">
+              {/* Navigation Header */}
+              <div className="text-center mb-12">
+                <div className="text-4xl font-bold text-white mb-4">Menu</div>
+                <div className="text-gray-400 text-lg">Browse through our pages</div>
+              </div>
+
+              {/* Navigation Grid - Full height cards */}
+              <div className="grid grid-cols-1 gap-4 mb-12">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl transition-all duration-300 flex-shrink-0 w-32 ${
+                    className={`flex items-center p-6 rounded-2xl transition-all duration-300 min-h-24 ${
                       isActive(item.path)
-                        ? 'bg-gradient-to-b from-primary/20 to-orange-500/20 border border-primary/30'
-                        : 'bg-gradient-to-b from-gray-800/50 to-gray-900/50 hover:from-gray-800/70 hover:to-gray-900/70 border border-gray-700/50'
+                        ? 'bg-gradient-to-r from-primary/20 to-orange-500/20 border-2 border-primary/50 shadow-lg shadow-primary/20'
+                        : 'bg-gradient-to-r from-gray-800/70 to-gray-900/70 hover:from-gray-800/90 hover:to-gray-900/90 border border-gray-700/50 hover:border-primary/30 hover:shadow-lg'
                     }`}
                   >
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-5 ${
                       isActive(item.path)
-                        ? 'bg-gradient-to-br from-primary to-orange-500'
-                        : 'bg-gray-800'
+                        ? 'bg-gradient-to-br from-primary to-orange-500 shadow-lg'
+                        : 'bg-gray-800/80'
                     }`}>
-                      <div className={isActive(item.path) ? 'text-white' : 'text-gray-400'}>
+                      <div className={isActive(item.path) ? 'text-white' : 'text-gray-300'}>
                         {item.icon}
                       </div>
                     </div>
-                    <div className={`text-center text-sm font-medium ${
-                      isActive(item.path) ? 'text-primary' : 'text-white'
-                    }`}>
-                      {item.name}
+                    <div className="flex-1">
+                      <div className={`text-left font-semibold text-xl ${
+                        isActive(item.path) ? 'text-primary' : 'text-white'
+                      }`}>
+                        {item.name}
+                      </div>
+                      <div className="text-gray-400 text-sm mt-1">
+                        Click to navigate
+                      </div>
                     </div>
+                    <ChevronRight className={`w-6 h-6 ${
+                      isActive(item.path) ? 'text-primary' : 'text-gray-500'
+                    }`} />
                   </Link>
                 ))}
               </div>
               
-              {/* Contact Info (Simplified) */}
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700/50 shadow-2xl">
+              {/* Quick Contact Section at Bottom */}
+              <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700/50 shadow-xl">
                 <div className="text-center mb-6">
-                  <div className="text-2xl font-bold text-white mb-2">Contact Us</div>
-                  <div className="text-gray-400">We're here to help with your project</div>
+                  <div className="text-2xl font-bold text-white mb-2">Need Immediate Assistance?</div>
+                  <div className="text-gray-400">Contact us directly</div>
                 </div>
                 
-                <Link
-                  to="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-center text-primary hover:text-orange-400 transition-colors pt-4 border-t border-gray-700/50"
-                >
-                  Visit Contact Page
-                </Link>
+                <div className="space-y-4">
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full bg-gradient-to-r from-primary to-orange-500 text-white py-4 px-6 rounded-xl text-center font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                  >
+                    Contact Form
+                  </Link>
+                  <a
+                    href="tel:+265881147790"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-4 px-6 rounded-xl text-center font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-gray-600/50"
+                  >
+                    Call: +265 881 14 77 90
+                  </a>
+                </div>
+              </div>
+
+              {/* Close Hint */}
+              <div className="text-center mt-10">
+                <div className="text-gray-500 text-sm">
+                  Swipe down or tap X to close
+                </div>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
