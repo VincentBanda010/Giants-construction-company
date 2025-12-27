@@ -8,8 +8,6 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,20 +17,24 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
-    { name: "About Us", path: "/about", icon: <Award className="w-4 h-4" /> },
-    { name: "Services", path: "/services", icon: <Sparkles className="w-4 h-4" /> },
-    { name: "Portfolio", path: "/portfolio", icon: <Briefcase className="w-4 h-4" /> },
-    { name: "Internship", path: "/internship", icon: <Users className="w-4 h-4" /> },
-    { name: "Contact Us", path: "/contact", icon: <ChevronRight className="w-4 h-4" /> },
+    { name: "About Us", path: "/about", icon: <Award className="w-5 h-5" /> },
+    { name: "Services", path: "/services", icon: <Sparkles className="w-5 h-5" /> },
+    { name: "Portfolio", path: "/portfolio", icon: <Briefcase className="w-5 h-5" /> },
+    { name: "Internship", path: "/internship", icon: <Users className="w-5 h-5" /> },
+    { name: "Contact Us", path: "/contact", icon: <ChevronRight className="w-5 h-5" /> },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -68,7 +70,6 @@ const Header = () => {
           <nav className="hidden lg:flex items-center justify-center flex-1 mx-8">
             <div className="flex items-center space-x-1">
               {navItems.map((item) => {
-                const isItemHovered = hoveredNav === item.path;
                 const isItemActive = isActive(item.path);
                 
                 return (
@@ -76,8 +77,6 @@ const Header = () => {
                     key={item.path}
                     to={item.path}
                     className="relative group/nav flex items-center gap-2 px-6 py-3 transition-all duration-300"
-                    onMouseEnter={() => setHoveredNav(item.path)}
-                    onMouseLeave={() => setHoveredNav(null)}
                   >
                     {/* Icon */}
                     <div className={`transition-colors duration-300 ${
@@ -99,20 +98,14 @@ const Header = () => {
                     {isItemActive && (
                       <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full"></div>
                     )}
-                    
-                    {/* Hover indicator line */}
-                    {!isItemActive && isItemHovered && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary/30 rounded-full"></div>
-                    )}
                   </Link>
                 );
               })}
             </div>
           </nav>
 
-          {/* Right side - Search Only (with transferred animations) */}
+          {/* Right side - Search Only */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-            {/* Enhanced Search with call button animations */}
             <div className="relative group/search">
               <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-0 group-hover/search:opacity-100"></div>
               
@@ -146,21 +139,6 @@ const Header = () => {
                       </button>
                     )}
                   </div>
-                  
-                  {/* Search preview dropdown */}
-                  {isSearchOpen && (
-                    <div className="absolute top-full mt-2 left-0 right-0 bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl border border-gray-700/50 shadow-2xl p-4 animate-slideDown">
-                      <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Quick Links</div>
-                      <div className="space-y-2">
-                        {['Residential Projects', 'Commercial Construction', 'Renovation Services', 'Project Timeline'].map((item) => (
-                          <div key={item} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer transition-colors">
-                            <Search className="w-3 h-3 text-primary" />
-                            <span className="text-sm text-gray-300">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -197,7 +175,7 @@ const Header = () => {
 
         {/* Mobile Search Overlay */}
         {isSearchOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-xl pt-20 px-4 sm:px-6 animate-fadeIn">
+          <div className="lg:hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-xl pt-20 px-4 sm:px-6 animate-fadeIn">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <div className="flex items-center bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-4 border border-gray-700/50 shadow-2xl">
@@ -221,16 +199,24 @@ const Header = () => {
         )}
       </div>
 
-      {/* Mobile Navigation - Slides down from top */}
-      <div className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ease-out ${
+      {/* Mobile Navigation Overlay - Covers entire screen */}
+      <div className={`lg:hidden fixed inset-0 z-[100] transition-all duration-500 ${
         mobileMenuOpen 
-          ? 'top-0 opacity-100 visible' 
-          : '-top-full opacity-0 invisible'
+          ? 'opacity-100 visible' 
+          : 'opacity-0 invisible pointer-events-none'
       }`}>
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800/95 backdrop-blur-xl">
-          
+        {/* Semi-transparent backdrop - click to close */}
+        <div 
+          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        
+        {/* Mobile Menu Content - Slides down from top */}
+        <div className={`absolute inset-x-0 top-0 h-[85vh] bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 shadow-2xl rounded-b-3xl transform transition-transform duration-500 ${
+          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}>
           {/* Close Button at Top Right */}
-          <div className="absolute top-6 right-6 z-50">
+          <div className="absolute top-6 right-6 z-10">
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-2 border-gray-700/50 shadow-2xl hover:scale-110 hover:border-primary/50 transition-all duration-300 group"
@@ -239,85 +225,58 @@ const Header = () => {
             </button>
           </div>
           
-          {/* Navigation Content - Starts from top and extends downward */}
-          <div className="pt-32 pb-12 px-6 h-full overflow-y-auto">
-            <div className="max-w-md mx-auto">
-              {/* Navigation Header */}
-              <div className="text-center mb-12">
-                <div className="text-4xl font-bold text-white mb-4">Menu</div>
-                <div className="text-gray-400 text-lg">Browse through our pages</div>
-              </div>
+          {/* Menu Content */}
+          <div className="pt-24 pb-8 px-6 h-full flex flex-col">
+            {/* Navigation Header */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-white mb-2">Menu</h2>
+              <p className="text-gray-400">Navigate through our site</p>
+            </div>
 
-              {/* Navigation Grid - Full height cards */}
-              <div className="grid grid-cols-1 gap-4 mb-12">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center p-6 rounded-2xl transition-all duration-300 min-h-24 ${
-                      isActive(item.path)
-                        ? 'bg-gradient-to-r from-primary/20 to-orange-500/20 border-2 border-primary/50 shadow-lg shadow-primary/20'
-                        : 'bg-gradient-to-r from-gray-800/70 to-gray-900/70 hover:from-gray-800/90 hover:to-gray-900/90 border border-gray-700/50 hover:border-primary/30 hover:shadow-lg'
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-5 ${
-                      isActive(item.path)
-                        ? 'bg-gradient-to-br from-primary to-orange-500 shadow-lg'
-                        : 'bg-gray-800/80'
+            {/* Navigation Items - Large and clear */}
+            <div className="flex-1 space-y-3 px-4 overflow-y-auto">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center p-5 rounded-2xl transition-all duration-300 ${
+                    isActive(item.path)
+                      ? 'bg-gradient-to-r from-primary/20 to-orange-500/20 border-2 border-primary/50 shadow-lg'
+                      : 'bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-700/50 hover:border-primary/30 hover:scale-[1.02]'
+                  }`}
+                >
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-4 ${
+                    isActive(item.path)
+                      ? 'bg-gradient-to-br from-primary to-orange-500'
+                      : 'bg-gray-800'
+                  }`}>
+                    <div className={isActive(item.path) ? 'text-white' : 'text-gray-300'}>
+                      {item.icon}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className={`text-lg font-semibold ${
+                      isActive(item.path) ? 'text-primary' : 'text-white'
                     }`}>
-                      <div className={isActive(item.path) ? 'text-white' : 'text-gray-300'}>
-                        {item.icon}
-                      </div>
+                      {item.name}
                     </div>
-                    <div className="flex-1">
-                      <div className={`text-left font-semibold text-xl ${
-                        isActive(item.path) ? 'text-primary' : 'text-white'
-                      }`}>
-                        {item.name}
-                      </div>
-                      <div className="text-gray-400 text-sm mt-1">
-                        Click to navigate
-                      </div>
+                    <div className="text-gray-400 text-sm mt-1">
+                      {item.path === "/contact" ? "Get in touch with us" : "Click to explore"}
                     </div>
-                    <ChevronRight className={`w-6 h-6 ${
-                      isActive(item.path) ? 'text-primary' : 'text-gray-500'
-                    }`} />
-                  </Link>
-                ))}
-              </div>
-              
-              {/* Quick Contact Section at Bottom */}
-              <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700/50 shadow-xl">
-                <div className="text-center mb-6">
-                  <div className="text-2xl font-bold text-white mb-2">Need Immediate Assistance?</div>
-                  <div className="text-gray-400">Contact us directly</div>
-                </div>
-                
-                <div className="space-y-4">
-                  <Link
-                    to="/contact"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full bg-gradient-to-r from-primary to-orange-500 text-white py-4 px-6 rounded-xl text-center font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                  >
-                    Contact Form
-                  </Link>
-                  <a
-                    href="tel:+265881147790"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-4 px-6 rounded-xl text-center font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-gray-600/50"
-                  >
-                    Call: +265 881 14 77 90
-                  </a>
-                </div>
-              </div>
+                  </div>
+                  <ChevronRight className={`w-6 h-6 ${
+                    isActive(item.path) ? 'text-primary' : 'text-gray-500'
+                  }`} />
+                </Link>
+              ))}
+            </div>
 
-              {/* Close Hint */}
-              <div className="text-center mt-10">
-                <div className="text-gray-500 text-sm">
-                  Swipe down or tap X to close
-                </div>
-              </div>
+            {/* Close hint at bottom */}
+            <div className="text-center pt-4 mt-4 border-t border-gray-700/50">
+              <p className="text-gray-500 text-sm">
+                Tap outside or X button to close
+              </p>
             </div>
           </div>
         </div>
